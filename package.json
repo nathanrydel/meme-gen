@@ -1,0 +1,43 @@
+{
+  "name": "meme-gen",
+  "version": "0.0.1",
+  "description": "A meme generator using Bootstrap and Vanilla JS",
+  "main": "memegen.js",
+  "scripts": {
+    "build": "npm run css",
+    "css-compile": "sass --style compressed --source-map --embed-sources --no-error-css --load-path=node_modules scss/:css/",
+    "css-lint": "stylelint scss/",
+    "css-prefix": "postcss --replace css/styles.css --use autoprefixer --map",
+    "css": "npm-run-all css-compile css-prefix",
+    "server": "sirv --dev --no-clear --port 3000",
+    "start": "npm-run-all --parallel watch server",
+    "watch": "nodemon -e html,scss -x \"npm run css\"",
+    "test": "npm-run-all css-lint css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nathanrydel/meme-generator.git"
+  },
+  "author": "Nathan Rydel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nathanrydel/meme-generator/issues"
+  },
+  "homepage": "https://github.com/nathanrydel/meme-generator#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.2",
+    "bootswatch": "^5.3.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "nodemon": "^3.0.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.27",
+    "postcss-cli": "^10.1.0",
+    "sass": "^1.64.1",
+    "sirv-cli": "^2.0.2",
+    "stylelint": "^15.10.2",
+    "stylelint-config-twbs-bootstrap": "^11.0.1"
+  }
+}
