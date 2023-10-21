@@ -1,25 +1,39 @@
 /**
  * Creates a Bootstrap img with the submitted image URL
  * @param {string} imageUrl - The URL of the submitted image
+ * @param {string} topText - The text needed to be added to the top of the image
+ * @param {string} bottomText - The text needed for the bottom of the image
  * @returns {HTMLDivElement} - The created Bootstrap img element
  */
 
-/*
-  TODO: Add topText and bottomText to image
-  TODO: make sure that they are positioned correctly on the image
-*/
-
 function createMemeImg(imageUrl, topText, bottomText) {
-  const div = document.createElement("div");
-  div.className = "";
+  if (imageUrl === '') return;
+
+  const memeDiv = document.createElement("div");
+  memeDiv.className = "position-relative col-lg-4 col-md-6 mx-auto";
+
   const img = document.createElement("img");
   img.className = "rounded mx-auto d-block";
+  img.style.width = "400px";
+  img.style.height = "400px";
   img.src = imageUrl;
 
-  return img;
+  const topTextPtag = document.createElement("p");
+  topTextPtag.innerText = topText;
+  topTextPtag.className = "position-absolute start-50 translate-middle-x text-light fs-1 impact-font";
+
+  const bottomTextPtag = document.createElement("p");
+  bottomTextPtag.textContent = bottomText;
+  bottomTextPtag.className = 'position-absolute bottom-0 start-50 translate-middle-x text-light fs-1 impact-font';
+
+  memeDiv.appendChild(topTextPtag);
+  memeDiv.appendChild(bottomTextPtag);
+  memeDiv.appendChild(img);
+
+  return memeDiv;
 }
 
-// TODO: add deletion function on hover over image
+// TODO: add deletion function
 
 /**
  * Handles the form submission by creating a meme image and adding it to container
@@ -34,8 +48,8 @@ function handleFormSubmit(event) {
 
   const form = document.getElementById("memeForm");
   const imageUrl = form.elements.urlInput.value;
-  const topText = form.elements.topTextInput;
-  const bottomText = form.elements.bottomTextInput;
+  const topText = form.elements.topTextInput.value;
+  const bottomText = form.elements.bottomTextInput.value;
 
   const memeImg = createMemeImg(imageUrl, topText, bottomText);
 
