@@ -30,7 +30,39 @@ function createMemeImg(imageUrl, topText, bottomText) {
   memeDiv.appendChild(bottomTextPtag);
   memeDiv.appendChild(img);
 
+  addBtnOnHover(memeDiv);
+
   return memeDiv;
+}
+
+
+// TODO: add delete btn to image on hover
+
+/**
+ * Add a hover effect and "X" (delete) button to image containers
+ *
+ * @param {HTMLDivElement} memeDiv - The image container to add the hover and button
+ */
+
+function addBtnOnHover(memeDiv) {
+  const deleteBtn = document.createElement("button");
+
+  deleteBtn.className = "position-absolute top-0 end-0 btn btn-danger btn-sm fw-bold rounded-pill d-none";
+  deleteBtn.innerText = "X";
+  deleteBtn.style.width = '2rem';
+  deleteBtn.style.height = '2rem';
+  deleteBtn.style.transform = "translate(-100%, 25%)";
+  deleteBtn.style.transition = 'opacity .3s';
+
+  memeDiv.addEventListener("mouseenter", () => {
+    deleteBtn.classList.remove("d-none");
+  });
+
+  memeDiv.addEventListener("mouseleave", () => {
+    deleteBtn.classList.add("d-none");
+  });
+
+  memeDiv.appendChild(deleteBtn);
 }
 
 // TODO: add deletion function
