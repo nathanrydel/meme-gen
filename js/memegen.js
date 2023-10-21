@@ -37,7 +37,6 @@ function createMemeImg(imageUrl, topText, bottomText) {
   return memeDiv;
 }
 
-
 /**
  * Add a hover effect and "X" (delete) button to image containers
  *
@@ -62,10 +61,22 @@ function addBtnOnHover(memeDiv) {
     deleteBtn.classList.add("d-none");
   });
 
+  deleteBtn.addEventListener("click", () => {
+    deleteMeme(memeDiv);
+  });
+
   memeDiv.appendChild(deleteBtn);
 }
 
-// TODO: add deletion function
+/**
+ * Delete a Meme from the DOM
+ *
+ * @param {HTMLDivElement} memeDiv - The Meme to delete
+ */
+
+function deleteMeme(memeDiv) {
+  memeDiv.remove();
+}
 
 /**
  * Handles the form submission by creating a meme image and adding it to container
