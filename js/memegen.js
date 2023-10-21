@@ -10,12 +10,14 @@ function createMemeImg(imageUrl, topText, bottomText) {
   if (imageUrl === '') return;
 
   const memeDiv = document.createElement("div");
-  memeDiv.className = "position-relative col-lg-4 col-md-6 mx-auto";
+  memeDiv.className = "position-relative col-lg-3 col-md-6 mx-auto";
+  memeDiv.style.width = "400px";
+  memeDiv.style.height = "400px";
 
   const img = document.createElement("img");
-  img.className = "rounded mx-auto d-block";
-  img.style.width = "400px";
-  img.style.height = "400px";
+  img.className = "rounded";
+  img.style.width = "100%";
+  img.style.height = "100%";
   img.src = imageUrl;
 
   const topTextPtag = document.createElement("p");
@@ -36,8 +38,6 @@ function createMemeImg(imageUrl, topText, bottomText) {
 }
 
 
-// TODO: add delete btn to image on hover
-
 /**
  * Add a hover effect and "X" (delete) button to image containers
  *
@@ -51,7 +51,7 @@ function addBtnOnHover(memeDiv) {
   deleteBtn.innerText = "X";
   deleteBtn.style.width = '2rem';
   deleteBtn.style.height = '2rem';
-  deleteBtn.style.transform = "translate(-100%, 25%)";
+  deleteBtn.style.transform = "translate(-70%, 35%)";
   deleteBtn.style.transition = 'opacity .3s';
 
   memeDiv.addEventListener("mouseenter", () => {
