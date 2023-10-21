@@ -10,12 +10,14 @@ function createMemeImg(imageUrl, topText, bottomText) {
   if (imageUrl === '') return;
 
   const memeDiv = document.createElement("div");
-  memeDiv.className = "position-relative col-lg-4 col-md-6 mx-auto";
+  memeDiv.className = "position-relative col-lg-3 col-md-6 mx-auto";
+  memeDiv.style.width = "400px";
+  memeDiv.style.height = "400px";
 
   const img = document.createElement("img");
-  img.className = "rounded mx-auto d-block";
-  img.style.width = "400px";
-  img.style.height = "400px";
+  img.className = "rounded";
+  img.style.width = "100%";
+  img.style.height = "100%";
   img.src = imageUrl;
 
   const topTextPtag = document.createElement("p");
@@ -30,10 +32,51 @@ function createMemeImg(imageUrl, topText, bottomText) {
   memeDiv.appendChild(bottomTextPtag);
   memeDiv.appendChild(img);
 
+  addBtnOnHover(memeDiv);
+
   return memeDiv;
 }
 
-// TODO: add deletion function
+/**
+ * Add a hover effect and "X" (delete) button to image containers
+ *
+ * @param {HTMLDivElement} memeDiv - The image container to add the hover and button
+ */
+
+function addBtnOnHover(memeDiv) {
+  const deleteBtn = document.createElement("button");
+
+  deleteBtn.className = "position-absolute top-0 end-0 btn btn-danger btn-sm fw-bold rounded-pill d-none";
+  deleteBtn.innerText = "X";
+  deleteBtn.style.width = '2rem';
+  deleteBtn.style.height = '2rem';
+  deleteBtn.style.transform = "translate(-70%, 35%)";
+  deleteBtn.style.transition = 'opacity .3s';
+
+  memeDiv.addEventListener("mouseenter", () => {
+    deleteBtn.classList.remove("d-none");
+  });
+
+  memeDiv.addEventListener("mouseleave", () => {
+    deleteBtn.classList.add("d-none");
+  });
+
+  deleteBtn.addEventListener("click", () => {
+    deleteMeme(memeDiv);
+  });
+
+  memeDiv.appendChild(deleteBtn);
+}
+
+/**
+ * Delete a Meme from the DOM
+ *
+ * @param {HTMLDivElement} memeDiv - The Meme to delete
+ */
+
+function deleteMeme(memeDiv) {
+  memeDiv.remove();
+}
 
 /**
  * Handles the form submission by creating a meme image and adding it to container
