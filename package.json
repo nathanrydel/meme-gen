@@ -1,6 +1,6 @@
 {
   "name": "meme-gen",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "A meme generator using Bootstrap and Vanilla JS",
   "main": "memegen.js",
   "scripts": {
