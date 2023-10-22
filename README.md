@@ -4,10 +4,10 @@ A Meme generator created by Nathan Rydel
 
 ## Tech Stack
 
-HTML5
-Bootstrap 5
-Sass
-Vanilla JS
+- HTML5
+- Bootstrap 5
+- Sass
+- Vanilla JS
 
 ## How to use
 
